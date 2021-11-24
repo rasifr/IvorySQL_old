@@ -8,21 +8,31 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    
+    - name: dependancy
+      run: |
+        apt-get update
+        apt-get install -y build-essential git lcov bison flex libkrb5-dev libssl-dev libldap-dev libpam-dev python-dev tcl-dev libperl-dev
+        apt-get install -y gettext libxml2-dev libxslt-dev libreadline-dev libedit-dev uuid-dev libossp-uuid-dev
+
     - name: configure
-      run: ./configure
-      
-    - name: Install dependencies
+      run: ./configure --enable-cassert --enable-debug --enable-rpath --with-tcl --with-python --with-gssapi --with-pam --with-ldap   --with-openssl --with-libedit-preferred --with-uuid=e2fs --with-ossp-uuid  --with-libxml --with-libxslt  --with-perl
+
+    - name: compile
       run: make
-      
-    - name: Run check
+
+  quickcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Regression
       run: make check
-      
-    - name: Run distcheck
-      run: make distcheck
+
+  checkall:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Regression
+      run: make check-world
 
