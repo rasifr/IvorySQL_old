@@ -25,12 +25,13 @@ jobs:
       run: make
 
   quickcheck:
-    runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Regression
       run: make check
 
   checkall:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Regression
