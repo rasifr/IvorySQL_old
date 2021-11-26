@@ -7,7 +7,7 @@ on:
     branches: [ test ]
 
 jobs:
-  build:
+  regression:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
