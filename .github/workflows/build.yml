@@ -1,4 +1,4 @@
-name: build ${{ matrix.os }}
+name: build
 
 on:
   push:

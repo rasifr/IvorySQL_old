@@ -1,4 +1,4 @@
-name: test ${{ matrix.os }}
+name: regression
 
 on:
   push:
