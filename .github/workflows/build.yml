@@ -25,6 +25,9 @@ jobs:
               libreadline-dev libedit-dev uuid-dev libossp-uuid-dev \
               libipc-run-perl libtime-hires-perl libtest-simple-perl
 
+    - name: git log
+      run: git log -5
+
     - name: configure - linux
       if: ${{ matrix.os == 'ubuntu-18.04' }}
       run: |
